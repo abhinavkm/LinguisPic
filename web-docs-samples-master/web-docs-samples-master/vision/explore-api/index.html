@@ -29,18 +29,19 @@
   </div>
 
 <h2>Choose the language you want to learn:</h2>
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Languages<span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">English</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">German</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Japanese</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">French</a></li>
-    </ul>
-  </div>
+  <form id="langfileform" action="">
+    <select name="type">
+      <option value="ENGLISH">ENGLISH</option>
+      <option value="FRENCH">FRENCH</option>
+      <option value="GERMAN">GERMAN</option>
+      <option value="JAPANESE">JAPANESE</option>
+    </select><br />
+    <input type="file" name="fileField"><br /><br />
+    <input type="submit" name="submit" value="Submit">
+  </form>
 
   <h2>Upload an image to help you learn new words:</h2>
-  <form id="fileform" action="">
+  <form id="picfileform" action="">
     <select name="type">
       <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
       <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
