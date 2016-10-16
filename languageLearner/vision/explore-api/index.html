@@ -1,0 +1,89 @@
+<!-- Copyright 2015, Google, Inc.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License. -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LinguisPic</title>
+  <link rel="shortcut icon" href="logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="key.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+  <div class="jumbotron">
+    <h1>LinguisPic </h1>
+    <img src="logo.jpg">
+  </div>
+
+  <div id="explaining">
+
+    <br>
+
+    <h2 id="headerExplaining">What is LinguisPic?</h2>
+
+    <p class="paragraphs">LinguisPic a web application that is a fun and creative way to help you on your journey to becoming a polyglot master! Learn words that you would like to learn by simplying uploading a picture!</p>
+
+    <br>
+
+    <h2 id= "Working">How Does It Work?</h2>
+
+    <p class="paragraphs">Simple! All you have to do is select the language that you are learning, upload a picture and click submit! LinguisPic will then analzye the picture that you submitted, look for key words about that picture and then give you those words in your chosen language.</p>
+
+    <br>
+
+  </div>
+
+  <br>
+
+<h2 id= "starting">Let's Get Started!</h2>
+
+<h4>What language do you want to learn?</h4>
+    <select id="lang">
+      <option value ="en">ENGLISH</option>
+      <option value ="fr">FRENCH</option>
+      <option value ="de">GERMAN</option>
+      <option value ="ja">JAPANESE</option>
+    </select><br />
+
+<br>
+
+
+  <h4>Upload your Picture:</h4>
+
+  <form id="fileform" action="">
+    <select name="type">
+      <option value="LABEL_DETECTION">Descriptive Words!</option>
+    </select><br />
+    <input type="file" name="fileField" onchange="readURL(this);"><br /><br />
+    <img id="blah" src="#" alt="your image" />
+    <input type="submit" name="submit" value="Submit">
+  </form>
+
+<div id="translation"></div>
+
+<code style="white-space:pre" id="results"></code>
+
+
+</body>
+</html>
