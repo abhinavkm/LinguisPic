@@ -20,9 +20,9 @@ $(function () {
 });
 
 /**
- * 'submit' event handler - reads the image bytes and sends it to the Cloud
- * Vision API.
- */
+* 'submit' event handler - reads the image bytes and sends it to the Cloud
+* Vision API.
+*/
 function uploadFiles (event) {
   event.preventDefault(); // Prevent the default form post
 
@@ -33,18 +33,33 @@ function uploadFiles (event) {
   reader.readAsDataURL(file);
 }
 
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#blah')
+      .attr('src', e.target.result)
+      .width(300)
+      .height(300);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
 /**
- * Event handler for a file's data url - extract the image data and pass it off.
- */
+* Event handler for a file's data url - extract the image data and pass it off.
+*/
 function processFile (event) {
   var content = event.target.result;
   sendFileToCloudVision(content.replace('data:image/jpeg;base64,', ''));
 }
 
 /**
- * Sends the given file contents to the Cloud Vision API and outputs the
- * results.
- */
+* Sends the given file contents to the Cloud Vision API and outputs the
+* results.
+*/
 function sendFileToCloudVision (content) {
   var type = $('#fileform [name=type]').val();
 
@@ -71,21 +86,51 @@ function sendFileToCloudVision (content) {
   }).done(displayJSON);
 }
 
-/**
- * takes data and stringifies it
- * returns a string containing just the description words separated by comma
- */
-function toJSON (data) {
-  var contents = JSON.stringify(data, null, 4);
-
-  var resultsArr = contents.match(/description\":\s\".*\"/g);
-
-  var i = 0;
-  var descriptionStr = "";
-  for(i=0; i<resultsArr.length; i++){
-    descriptionStr += resultsArr[i].substring(resultsArr[i].indexOf("d")+15,resultsArr[i].length-1)+", ";
-  }
-  //document.write(descriptionStr);
-  
-
+function translateText(response) {
+  console.log(response);
+  document.getElementById("translation").innerHTML += "<br>" + response.data.translations[0].translatedText;
 }
+
+/**
+* Displays the results.
+*/
+function displayJSON (data) {
+
+  var config = {
+    key : "AIzaSyCikwWkzwrWXDx2ovyBU0SGbibmcRiPfo4",
+    target : "de"};
+    console.log(data);
+
+    var origArr = new Array();
+    var translationArr = new Array();
+
+    var i=0;
+    for(i=0; i<data.responses[0].labelAnnotations.length; i++){
+      origArr[i] = data.responses[0].labelAnnotations[i].description;
+    }
+
+    var promises = data.responses[0].labelAnnotations
+    .map(function(item){
+      return $.get("https://www.googleapis.com/language/translate/v2?key="+config.key+"&q="+item.description+"&target=de");
+    })
+
+    Promise.all(promises).then(function(results){
+        results = results.map(function(result) {
+        return result.data.translations[0].translatedText;
+        document.write(result.data.translations[0].translatedText);
+
+      })
+
+       var j=0;
+       for(j=0; j<results.length; j++){
+      //   translationArr[i] = data.responses[0].labelAnnotations[i].description;
+            translationArr[j] = results[j];
+       }
+
+
+       console.log(results);
+    });
+
+
+       document.write(origArr + "\n" + translationArr);
+  }
