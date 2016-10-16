@@ -1,0 +1,60 @@
+.img-responsive {
+	width:100%;
+}
+
+.jumbotron {
+	font-family: 'Lobster', cursive;
+	text-align: center;
+	background-color: #FFFFFF;
+	color: #3996A3;
+	border-bottom: 2px solid;
+
+}
+
+.section-heading-spacer {
+	border-top: 4px solid #0099cc;
+	opacity: 0.5;
+
+}
+
+.btn {
+	content: center;
+}
+
+#explaining {
+	text-align: center;
+	border-bottom: 2px solid #3996A3;
+}
+
+#headerExplaining {
+	color: #3996A3;
+}
+
+#Working {
+	color: #3996A3;
+}
+
+body {
+	background-color: ##FFFFFF;
+}
+
+#starting {
+	text-align: center;
+	color: #3996A3;
+}
+
+#language {
+	padding-left: 50px;
+}
+
+#uploadingPicture {
+	padding-left: 50px;
+}
+
+.paragraphs {
+	text-align: center;
+	font-size: 1.5em;
+	width: 900px;
+    word-wrap: break-word;
+    margin: auto;
+}
